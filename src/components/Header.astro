@@ -1,0 +1,36 @@
+---
+const { lang = 'en' } = Astro.props;
+
+const nav = {
+  en: [
+    { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'About', href: '/about' },
+  ],
+  pt: [
+    { label: 'Início', href: '/pt' },
+    { label: 'Blog', href: '/pt/blog' },
+    { label: 'Sobre', href: '/pt/about' },
+  ]
+};
+
+const links = nav[lang];
+const switchLangLink = lang === 'en' ? '/pt' : '/';
+const switchLangLabel = lang === 'en' ? 'PT' : 'EN';
+---
+
+<header class="py-6 mb-12 border-b border-gray-100">
+  <div class="max-w-3xl mx-auto px-4 flex justify-between items-center">
+    <a href={lang === 'en' ? '/' : '/pt'} class="text-xl font-bold tracking-tight hover:text-blue-600 transition-colors">
+      Luis Caldas de Oliveira
+    </a>
+    <nav class="flex items-center gap-6 text-sm font-medium text-gray-600">
+      {links.map((link) => (
+        <a href={link.href} class="hover:text-black transition-colors">{link.label}</a>
+      ))}
+      <a href={switchLangLink} class="px-2 py-1 bg-gray-100 rounded hover:bg-gray-200 transition-colors text-xs">
+        {switchLangLabel}
+      </a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import profileImg from '../../assets/profile.jpg';
+---
+
+<BaseLayout title="Sobre Mim" description="Sobre Luis Caldas de Oliveira" lang="pt">
+	<div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="w-full md:w-1/3">
+            <Image src={profileImg} alt="Luis Caldas de Oliveira" class="rounded-lg shadow-md w-full" />
+        </div>
+        <div class="w-full md:w-2/3 prose">
+            <h1>Sobre Mim</h1>
+            <p>
+                Olá! Eu sou <strong>Luis Caldas de Oliveira</strong>. Bem-vindo ao meu blog minimalista construído com Astro e Tailwind CSS.
+            </p>
+            <p>
+                Sou apaixonado por tecnologia, tipografia e por escrever código eficiente.
+            </p>
+            <h3>Minhas Competências</h3>
+            <ul>
+                <li>Desenvolvimento Web</li>
+                <li>Arquitetura de Sistemas</li>
+                <li>Processamento Digital de Sinal</li>
+            </ul>
+        </div>
+    </div>
+</BaseLayout>

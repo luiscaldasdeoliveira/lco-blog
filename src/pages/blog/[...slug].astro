@@ -1,0 +1,35 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts
+        .filter(post => post.data.lang === 'en')
+        .map((post) => ({
+            params: { slug: post.slug.replace(/^en\//, '') },
+            props: post,
+	    }));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} lang="en">
+	<article class="prose prose-lg mx-auto prose-img:rounded-xl">
+		<div class="mb-8 text-center not-prose">
+            <div class="text-gray-500 mb-2">
+			    <FormattedDate date={post.data.pubDate} />
+            </div>
+			<h1 class="text-4xl font-bold tracking-tight mb-4">{post.data.title}</h1>
+            {post.data.heroImage && <Image src={post.data.heroImage} alt={post.data.title} class="w-full h-auto rounded-lg shadow-sm" />}
+		</div>
+        <div class="mt-8">
+		    <Content />
+        </div>
+	</article>
+</BaseLayout>
