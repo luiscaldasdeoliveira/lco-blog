@@ -1,7 +1,6 @@
 {
   "name": "lco-blog",
   "compatibility_date": "2026-01-22",
-  "main": "dist/_worker.js/index.js", // Path to the generated worker
   "assets": {
     "directory": "./dist",
   },
