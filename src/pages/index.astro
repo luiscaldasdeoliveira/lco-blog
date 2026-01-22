@@ -15,7 +15,7 @@ const posts = (await getCollection('blog'))
 			{
 				posts.map((post) => (
 					<li class="group">
-						<a href={`/blog/${post.slug}/`} class="block">
+						<a href={`/blog/${post.slug.replace(/^en\//, '')}/`} class="block">
                             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
 							    <h2 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">{post.data.title}</h2>
                                 <p class="text-sm text-gray-400 shrink-0">
